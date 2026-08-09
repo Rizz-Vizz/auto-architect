@@ -6,12 +6,7 @@ zerops:
         - cd backend && npm install --omit=dev
       cache: backend/node_modules
       deployFiles:
-        - backend/server.js
-        - backend/prompt.js
-        - backend/yamlBuilder.js
-        - backend/zeropsKnowledge.js
-        - backend/package.json
-        - backend/node_modules
+        - backend/~
     run:
       base: nodejs@22
       ports:
@@ -25,10 +20,7 @@ zerops:
     build:
       base: static
       deployFiles:
-        - frontend/index.html
-        - frontend/style.css
-        - frontend/app.js
-        - frontend/config.js
+        - frontend/~
     run:
       ports:
         - port: 80
