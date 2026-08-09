@@ -1,0 +1,35 @@
+zerops:
+  - setup: api
+    build:
+      base: nodejs@22
+      buildCommands:
+        - cd backend && npm install --omit=dev
+      cache: backend/node_modules
+      deployFiles:
+        - backend/server.js
+        - backend/prompt.js
+        - backend/yamlBuilder.js
+        - backend/zeropsKnowledge.js
+        - backend/package.json
+        - backend/node_modules
+    run:
+      base: nodejs@22
+      ports:
+        - port: 8000
+          httpSupport: true
+      start: node server.js
+      envVariables:
+        GROQ_MODEL: llama-3.3-70b-versatile
+
+  - setup: web
+    build:
+      base: static
+      deployFiles:
+        - frontend/index.html
+        - frontend/style.css
+        - frontend/app.js
+        - frontend/config.js
+    run:
+      ports:
+        - port: 80
+          httpSupport: true
