@@ -9,5 +9,5 @@
 // For LOCAL development: leave this as http://localhost:8000.
 // It already matches `npm start` in /backend and nothing else needs changing.
 window.AUTO_ARCHITECT_CONFIG = {
-  DEFAULT_API_BASE_URL: "http://localhost:8000",
+  DEFAULT_API_BASE_URL: "https://api-237-8000.ny1.zerops.app",
 };
