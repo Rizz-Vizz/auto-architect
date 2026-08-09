@@ -22,6 +22,7 @@ zerops:
       deployFiles:
         - frontend/~
     run:
+      base: static
       ports:
         - port: 80
           httpSupport: true
