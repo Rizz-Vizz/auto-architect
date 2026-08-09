@@ -4,6 +4,8 @@ Describe your app in plain English. Get a real `zerops.yaml`, a `zerops-project-
 
 Built for the [Zerops Challenge](https://wemakedevs.org) (WeMakeDevs × Zerops).
 
+[![Auto-Architect Demo](https://img.youtube.com/vi/rJyGQQ1k2Rw/maxresdefault.jpg)](https://www.youtube.com/watch?v=rJyGQQ1k2Rw)
+
 ---
 
 ## How it works
