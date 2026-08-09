@@ -1,0 +1,13 @@
+zerops:
+  - setup: web
+    build:
+      base: static          # no build tool needed — files served as-is
+      deployFiles:
+        - index.html
+        - style.css
+        - app.js
+        - config.js
+    run:
+      ports:
+        - port: 80
+          httpSupport: true

@@ -1,0 +1,16 @@
+{
+  "name": "auto-architect-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Plain HTML/CSS/JS static site — no runtime dependencies. This package.json exists only for the test tooling below; it is not part of the deployed site.",
+  "type": "module",
+  "scripts": {
+    "test": "node test/dom.test.mjs"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "css-tree": "^3.2.1",
+    "html-validate": "^11.6.2",
+    "jsdom": "^30.0.1"
+  }
+}

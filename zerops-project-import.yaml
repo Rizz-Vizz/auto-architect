@@ -1,0 +1,13 @@
+# Paste this into Zerops -> "Import project" to create both services in one
+# shot. After import, connect each service to its subfolder in your Git repo
+# (web -> /frontend, api -> /backend) and set ANTHROPIC_API_KEY as a secret
+# variable on the "api" service.
+project:
+  name: auto-architect
+services:
+  - hostname: web
+    type: static
+    enableSubdomainAccess: true
+  - hostname: api
+    type: nodejs@22
+    enableSubdomainAccess: true

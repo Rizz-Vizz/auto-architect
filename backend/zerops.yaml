@@ -1,0 +1,26 @@
+zerops:
+  - setup: api
+    build:
+      base: nodejs@22
+      buildCommands:
+        - npm install --omit=dev
+      cache: node_modules
+      deployFiles:
+        - server.js
+        - prompt.js
+        - yamlBuilder.js
+        - zeropsKnowledge.js
+        - package.json
+        - node_modules
+    run:
+      base: nodejs@22
+      ports:
+        - port: 8000
+          httpSupport: true
+      start: npm start
+      envVariables:
+        # Set the real value as a SECRET variable on this service in the
+        # Zerops GUI (Environment variables -> Secret variables). Do not put
+        # the key itself in this file.
+        ANTHROPIC_MODEL: claude-sonnet-4-5
+
