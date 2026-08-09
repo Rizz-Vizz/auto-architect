@@ -20,12 +20,7 @@ app.get("/api/health", (_req, res) => {
   res.json({ ok: true, hasApiKey: Boolean(GROQ_API_KEY), model: MODEL });
 });
 
-// Simple in-memory fixed-window rate limiter, per IP. No extra dependency —
-// this is a demo/hackathon backend behind one shared API key, not a
-// multi-tenant service, so this is deliberately just enough to stop a
-// runaway loop or an accidental refresh-spam from burning through credits,
-// not a production-grade limiter (resets on restart, doesn't share state
-// across instances).
+// Basic in-memory rate limiter to prevent credit drain during the demo
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
 const hits = new Map(); // ip -> { count, windowStart }
@@ -49,8 +44,7 @@ function rateLimit(req, res, next) {
   next();
 }
 
-// Occasionally sweep stale entries so this Map doesn't grow unbounded on a
-// long-running instance.
+// Sweep stale rate limit entries
 setInterval(() => {
   const now = Date.now();
   for (const [ip, entry] of hits) {
@@ -58,15 +52,14 @@ setInterval(() => {
   }
 }, RATE_LIMIT_WINDOW_MS).unref();
 
-// Strips ```json fences if the model adds them despite being told not to.
+// Strip markdown fences from JSON output
 function extractJson(text) {
   const trimmed = text.trim();
   const fenced = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/);
   return fenced ? fenced[1].trim() : trimmed;
 }
 
-// Cheap structural validation so a malformed model response never reaches
-// the YAML builder (and never reaches the user as broken output).
+// Quick structural validation
 function validateParsed(parsed) {
   const errors = [];
   if (!parsed || typeof parsed !== "object") return ["response is not an object"];
@@ -159,8 +152,7 @@ app.post("/api/generate", rateLimit, async (req, res) => {
     let parsed = await callClaude(description);
     let errors = validateParsed(parsed);
 
-    // One retry with the specific validation errors fed back in — this is
-    // the safety net for the single riskiest part of the pipeline.
+    // One retry with validation feedback
     if (errors.length) {
       parsed = await callClaude(description, { retryHint: errors.join("; ") });
       errors = validateParsed(parsed);
@@ -175,9 +167,7 @@ app.post("/api/generate", rateLimit, async (req, res) => {
 
     const { zeropsYaml, projectImportYaml } = buildYamlOutputs(parsed);
 
-    // Final sanity check: make sure what we're about to send back actually
-    // parses as YAML. If this ever fails it's a bug in yamlBuilder.js, not
-    // the model's fault — better to surface it than ship broken output.
+    // Final sanity check: verify output is valid YAML
     YAML.parse(zeropsYaml);
     YAML.parse(projectImportYaml);
 
