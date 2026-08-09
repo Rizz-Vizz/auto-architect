@@ -59,7 +59,7 @@ Open `frontend/index.html` in a browser. It defaults to `localhost:8000`.
 4. Connect `web` → this repo's `/frontend` subfolder
 5. Once `api` is live, copy its public URL → put it in `frontend/config.js` → push
 
-## 🏆 Zerops Challenge Details
+##  Zerops Challenge Details
 
 This project is submitted for the **WeMakeDevs x Zerops Challenge**. 
 
