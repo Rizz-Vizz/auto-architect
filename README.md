@@ -4,13 +4,15 @@ Describe your app in plain English. Get a real `zerops.yaml`, a `zerops-project-
 
 Built for the [Zerops Challenge](https://wemakedevs.org) (WeMakeDevs × Zerops).
 
-**🚀 [Try it Live on Zerops](https://web-237.ny1.zerops.app/)**
+**[Try it Live on Zerops](https://web-237.ny1.zerops.app/)**
 
-### 📺 Watch the Demo
-
-[![Auto-Architect Demo](https://img.youtube.com/vi/rJyGQQ1k2Rw/maxresdefault.jpg)](https://www.youtube.com/watch?v=rJyGQQ1k2Rw)
-*Click the image above to watch the 2-minute demo on YouTube*
-
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=rJyGQQ1k2Rw">
+    <img src="https://img.youtube.com/vi/rJyGQQ1k2Rw/maxresdefault.jpg" alt="Auto-Architect Demo" width="600">
+  </a>
+  <br>
+  <em>Click the image above to watch the 2-minute demo on YouTube</em>
+</div>
 ---
 
 ## How it works
