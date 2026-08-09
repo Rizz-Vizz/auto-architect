@@ -59,8 +59,20 @@ Open `frontend/index.html` in a browser. It defaults to `localhost:8000`.
 4. Connect `web` → this repo's `/frontend` subfolder
 5. Once `api` is live, copy its public URL → put it in `frontend/config.js` → push
 
-## AI disclosure
+## 🏆 Zerops Challenge Details
 
-- Groq (Llama 3.3 70B) is the model powering the core feature at runtime
-- Antigravity was used as a coding assistant during development
-- Zerops syntax in `zeropsKnowledge.js` was pulled from docs.zerops.io and hand-verified
+This project is submitted for the **WeMakeDevs x Zerops Challenge**. 
+
+**1. How Zerops is used (Rule 9)**
+The application is entirely hosted and deployed on Zerops using a decoupled architecture:
+- **`web`**: A static frontend service built with HTML/CSS/JS and served by Nginx.
+- **`api`**: A Node.js runtime service running an Express backend. 
+
+Zerops CI/CD pipelines automatically build and deploy both services from this repository. The `zerops.yaml` file at the root defines the build steps and routing for both services in production.
+
+**2. Architecture Complexity (Rule 5)**
+This is a production-ready application, not a Hello World. It features a custom Express backend with an in-memory rate limiter, robust JSON validation to prevent LLM hallucinations, and deterministic YAML generation. The static frontend and Node.js backend are decoupled and communicate securely over the internet via Zerops subdomains.
+
+**3. AI Tools Disclosure (Rule 12)**
+- **Runtime AI**: The core text-to-architecture generation feature is powered by the Groq API (Llama 3.3 70B).
+- **Development AI**: Google Gemini was used as a coding assistant to help build, debug, and configure the deployment pipelines during the hackathon. All core logic, prompts, and architecture decisions are original.
