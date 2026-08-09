@@ -18,7 +18,7 @@ zerops:
 
   - setup: web
     build:
-      base: static
+      base: nodejs@22
       deployFiles:
         - frontend/~
     run:
